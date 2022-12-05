@@ -1,3 +1,3 @@
-####djangsimple
+####djforms
 
 one-project Django template; app==project
