@@ -9,5 +9,13 @@
 		<br/>
 		<br/>
 		Please fill out our <a href="/djforms">survey</a>
+		<br/>
+		<br/>
+		These people already took the survey!
+		<br/>
+		<br/>
+		{% for name in names %}
+			{{name}}<br/>
+		{% endfor %}
 	</body>
 </html>

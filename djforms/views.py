@@ -14,6 +14,8 @@ static_context = {
 def home(request):
     context = dict(static_context)
     context['variable'] = "simple"
+    q = Simple.objects.all()
+    context['names'] = [x.name for x in q]
     return render(request, 'djforms/templates/index.html', context)
 
 def djform(request):
@@ -27,7 +29,7 @@ def djform(request):
             mod.name = name
             mod.save()
             # acknowledge:
-            resp = f'got it -- your name is: {name}'
+            resp = f'got it -- your name is: {name}<br/><br/><a href="/">homepage</a>'
             return HttpResponse(resp)
 
     # if a GET (or any other method) we'll create a blank form
