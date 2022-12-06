@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 # from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from .forms import DjangForm
-
+from .models import Simple
 
 static_context = {
     'images': 'static/images/',
@@ -21,8 +21,13 @@ def djform(request):
     if request.method == 'POST':
         form = DjangForm(request.POST)
         if form.is_valid():
+            name = form["name"].value()
+            # save in db:
+            mod = Simple()
+            mod.name = name
+            mod.save()
             # acknowledge:
-            resp = f'got it -- your name is: {form["name"].value()}'
+            resp = f'got it -- your name is: {name}'
             return HttpResponse(resp)
 
     # if a GET (or any other method) we'll create a blank form
